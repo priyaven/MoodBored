@@ -1,0 +1,31 @@
+<div style="text-align:center">
+	<textarea id="story" placeholder="Write your story snippet here"
+style="height:50vh; width:80vw;"></textarea>
+	<br/>
+	<button id="generateButton" onclick="go()" type="button" autofocus>
+		Generate Moodboard
+	</button>
+	<div id="loading" style="display:none">Loading...</div>
+
+	<div id="images" style="display:flex;flex-wrap:wrap">
+	</div>
+
+</div>
+<script>
+	var $=document.getElementById.bind(document)
+	function go() {
+		$('generateButton').style.display = 'none'
+		$('loading').style.display = 'block'
+		fetch("generate?text="+$('story').value).then((r) => {
+			r.json().then((json) => {
+				var html = ''
+				for(var url of json) {
+					html += `<img style="width:33%" src="`+url+`" />`
+				}
+				$('images').innerHTML = html
+			})
+			$('generateButton').style.display = 'inline-block'
+			$('loading').style.display = 'none'
+		})
+	}
+</script>
