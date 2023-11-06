@@ -30,6 +30,7 @@ class Story:
         self.story_text = story_string
 
     def get_characters_from_story_text(self):
+        self.characters = []
         context = ("Please read the following story and " +
                    "answer questions using the information present here. "
                                   + self.story_text)
