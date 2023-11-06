@@ -19,8 +19,13 @@ style="height:50vh; width:80vw;"></textarea>
 		fetch("generate?text="+$('story').value).then((r) => {
 			r.json().then((json) => {
 				var html = ''
-				for(var url of json) {
+				imgs = json["images"]
+				prompts = json["prompts"]
+				for(var url of imgs) {
 					html += `<img style="width:33%" src="`+url+`" />`
+				}
+				for(var prompt of prompts) {
+				html += `<div>`+prompt+`<br/></div>`
 				}
 				$('images').innerHTML = html
 			})

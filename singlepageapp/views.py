@@ -29,4 +29,7 @@ def process_text(request):
     '''
     prompts = story_structure.get_prompts_from_story_text(text)
     images = story_structure.get_images_from_prompts(prompts)
-    return HttpResponse(json.dumps(images))
+    op = {}
+    op["images"] = images
+    op["prompts"] = prompts
+    return HttpResponse(json.dumps(op))
